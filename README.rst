@@ -42,6 +42,16 @@ Add the following parameters to your settings file::
     # The Janrain client secret, shown on the Janrain site.
     JANRAIN_CLIENT_SECRET = 'JANRAIN_CLIENT_SECRET'
 
+The product includes a South migration, so I found that the following works when using the standard Praekelt setup:
+
+* Backup.
+
+* Run a level 2 deploy. This will pull in the product and dependencies. The server will either not start up or will throw 503 errors, since the migration is not run yet.
+
+* Do a South migration::
+    ./bin/{yoursite}-qa-web-site migrate janrain
+
+* Run a level 1 install. Everything should now start up. You might want to add the stuff above into all the settings files.
 
 Find the complete set of `Jmbo docs here <http://jmbo.readthedocs.org/>`_
 
